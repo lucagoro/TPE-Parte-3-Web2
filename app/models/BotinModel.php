@@ -64,6 +64,12 @@ class BotinModel {
         $query = $this->db->prepare('UPDATE botines SET modelo = ?, color = ?, talle = ?, gama = ?, precio = ?, id_marca = ? WHERE id_botin = ?');
         $query->execute([$modelo, $color, $talle, $gama, $precio, $id_marca, $id]);
     }
+    
+    function insert($modelo, $color, $talle, $gama, $precio, $id_marca){
+        $query = $this->db->prepare('INSERT INTO botines(modelo, color, talle, gama, precio, id_marca) VALUES(?,?,?,?,?,?)');
+        $query->execute([$modelo, $color, $talle, $gama, $precio, $id_marca]);
 
+        return $this->db->lastInsertId();
+    }
     
 }

@@ -58,12 +58,36 @@ class BotinApiController {
         $this->view->response($botin);
 
     }
-    function getById($req, $res){
+    function getById($req, $res) {
         $id = $req->params->id;
         $botin = $this->model->getBotin($id);
-        if(!$botin){
+    
+        if (!$botin) {
             $this->view->response("No existe botin con ese ID", 404);
+        } else{
+            return $this->view->response($botin, 200);
         }
-        return $this->view->response($botin, 200);
     }
+    function add($req, $res){
+        $modelo = $req->body->modelo;
+        $color = $req->body->color;
+        $talle = $req->body->talle;
+        $gama = $req->body->gama;
+        $precio = $req->body->precio;
+        $id_marca = $req->body->id_marca;
+
+        if(empty($modelo) || empty($color) || empty($talle) || empty($gama) || empty($precio) || empty($id_marca)){
+            $this->view->response('Faltan completar datos.', 400);
+        }
+
+        $botinAdd = $this->model->insert($modelo, $color, $talle, $gama, $precio, $id_marca);
+
+        if($botinAdd){
+            $botin = $this->model->getBotin($botinAdd);
+            return $this->view->response($botin, 201);
+        }else{
+            return $this->view->response('Error al insertar el botin.', 500);
+        }
+    }
+    
 }
