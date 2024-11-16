@@ -14,10 +14,21 @@ class BotinApiController {
     function getAll($req, $res) {
 
         $orderBy = false;
+        $page = 0;
+        $size = 0;
+
         if(isset($req->query->orderBy))
         $orderBy = $req->query->orderBy;
 
-        $botines = $this->model->getBotines($orderBy);
+        if(isset($req->query->page))
+        $page = max(1, $req->query->page); // la funcion max() hace q el numero minimo sea 1
+
+        if(isset($req->query->size))
+        $size = max(1, $req->query->size);
+
+        $offset = ($page - 1) * $size;
+
+        $botines = $this->model->getBotines($orderBy, $offset, $size);
         return $this->view->response($botines);
     }
 
