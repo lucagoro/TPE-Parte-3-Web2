@@ -46,9 +46,7 @@ class BotinModel {
     public function getBotin($id) {    
         $query = $this->db->prepare('SELECT * FROM botines WHERE id_botin = ?');
         $query->execute([$id]);   
-    
         $botin = $query->fetch(PDO::FETCH_OBJ);
-    
         return $botin;
     }
 

@@ -45,6 +45,14 @@ class BotinApiController {
         $botin = $this->model->getBotin($id);
 
         $this->view->response($botin);
-    }
 
+    }
+    function getById($req, $res){
+        $id = $req->params->id;
+        $botin = $this->model->getBotin($id);
+        if(!$botin){
+            $this->view->response("No existe botin con ese ID", 404);
+        }
+        return $this->view->response($botin, 200);
+    }
 }
