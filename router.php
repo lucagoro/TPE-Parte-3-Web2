@@ -9,4 +9,5 @@ $router->addRoute('botines/:id', 'PUT', 'BotinApiController', 'edit');
 
 
 
+
 $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

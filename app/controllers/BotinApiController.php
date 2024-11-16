@@ -22,26 +22,25 @@ class BotinApiController {
     }
 
     function edit($req, $res) {
-        $id = $req->params->id; // ver si va id u otro nombre
+        $id = $req->params->id; 
         $botin = $this->model->getBotin($id);
 
         if(!$botin)
             return $this->view->response("No existe el botin con id=$id.", 404);
 
-        if(empty($req->body->modelo) || empty($req->body->talle) || empty($req->body->precio) || 
-            empty($req->body->gama) || empty($req->body->id_marca)) { // ver si va id_marca u otro nombre
+        if(empty($req->body->modelo) || empty($req->body->color) || empty($req->body->talle) || empty($req->body->gama) || 
+            empty($req->body->precio) || empty($req->body->id_marca)) {
                 return $this->view->response("Faltan completar campos!", 400);
             }
-            //
-            // REVISAR TODO ESTO, LOS NOMBRES Y EL ORDEN
-            //
-            $modelo = $req->body->modelo;
+            
+        $modelo = $req->body->modelo;
+        $color = $req->body->color;
         $talle = $req->body->talle;
-        $precio = $req->body->precio;
         $gama = $req->body->gama;
+        $precio = $req->body->precio;
         $id_marca = $req->body->id_marca;
 
-        $this->model->editBotin($modelo, $talle, $precio, $gama, $id_marca, $id);
+        $this->model->editBotin($id, $modelo, $color, $talle, $gama, $precio, $id_marca);
 
         $botin = $this->model->getBotin($id);
 

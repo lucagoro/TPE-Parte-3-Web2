@@ -8,19 +8,31 @@ class BotinModel {
     }
 
     function getConnection() {
-        return new PDO('');
+        return new PDO('mysql:host=localhost;dbname=marcas_botines;charset=utf8', 'root', '');
     }
 
     function getBotines($orderBy = false) {
         $sql = 'SELECT * FROM botines';
 
         if($orderBy) {
-            switch($orderBy) { // TERMINAR ESTO --- VAN TODOS LOS CAMPOS
+            switch($orderBy) {
+                case 'modelo':
+                    $sql .= ' ORDER BY modelo';
+                    break;
+                case 'color':
+                    $sql .= ' ORDER BY color';
+                    break;
                 case 'talle':
-                    $sql .= 'ORDER BY talle';
+                    $sql .= ' ORDER BY talle';
+                    break;
+                case 'gama':
+                    $sql .= ' ORDER BY gama';
                     break;
                 case 'precio':
-                    $sql .= 'ORDER BY precio';
+                    $sql .= ' ORDER BY precio';
+                    break;
+                case 'marca': // ver si va id_marca
+                    $sql .= ' ORDER BY id_marca';
                     break; 
             }
         }
@@ -31,13 +43,18 @@ class BotinModel {
         return $botines;
     }
 
-    function getBotin($id) {
-        // tomi
+    public function getBotin($id) {    
+        $query = $this->db->prepare('SELECT * FROM botines WHERE id_botin = ?');
+        $query->execute([$id]);   
+    
+        $botin = $query->fetch(PDO::FETCH_OBJ);
+    
+        return $botin;
     }
 
-    function editBotin($modelo, $talle, $precio, $gama, $id_marca, $id) { // VER NOMBRES Y ORDEN ACÁ TAMBIEN
-        $query = $this->db->prepare('UPDATE botines SET modelo = ?, talle = ?, precio = ?, gama = ? id_marca = ? WHERE id = ?');
-        $query->execute([$modelo, $talle, $precio, $gama, $id_marca, $id]);
+    function editBotin($id, $modelo, $color, $talle, $gama, $precio, $id_marca) {
+        $query = $this->db->prepare('UPDATE botines SET modelo = ?, color = ?, talle = ?, gama = ?, precio = ?, id_marca = ? WHERE id_botin = ?');
+        $query->execute([$modelo, $color, $talle, $gama, $precio, $id_marca, $id]);
     }
 
     
