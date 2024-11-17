@@ -11,8 +11,8 @@ class BotinModel {
         return new PDO('mysql:host=localhost;dbname=marcas_botines;charset=utf8', 'root', '');
     }
 
-    function getBotines($orderBy = false, $offset = 0, $limit = 0) {
-        $sql = 'SELECT * FROM botines';
+    function getBotines($orderBy = false, $offset = 0, $limit = 0, $queryFiltro, $filtros) {
+        $sql = 'SELECT * FROM botines WHERE 1' . $queryFiltro;
 
         if($orderBy) {
             switch($orderBy) {
@@ -47,8 +47,10 @@ class BotinModel {
             $query->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
             $query->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
         }
+
+      echo($filtros);
         
-        $query->execute();
+        $query->execute($filtros);
         $botines = $query->fetchAll(PDO::FETCH_OBJ);
         return $botines;
     }

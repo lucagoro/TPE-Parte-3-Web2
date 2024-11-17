@@ -13,9 +13,13 @@ class BotinApiController {
 
     function getAll($req, $res) {
 
+
         $orderBy = false;
         $page = 0;
         $size = 0;
+        $queryFiltro = "";
+        $filtros = [];
+
 
         if(isset($req->query->orderBy))
         $orderBy = $req->query->orderBy;
@@ -25,10 +29,20 @@ class BotinApiController {
 
         if(isset($req->query->size))
         $size = max(1, $req->query->size);
+        //filtrado
+        if(isset($req->query->modelo)){
+            $queryFiltro = $queryFiltro . "AND modelo = ? ";
+            array_push($filtros, $req->query->modelo );
+        }
+        if(isset($req->query->color)){
+            echo($req->query->color);
+            $queryFiltro = $queryFiltro . "AND color = ? ";
+            array_push($filtros, $req->query->color );
+        }
 
         $offset = ($page - 1) * $size;
 
-        $botines = $this->model->getBotines($orderBy, $offset, $size);
+        $botines = $this->model->getBotines($orderBy, $offset, $size,$queryFiltro, $filtros);
         return $this->view->response($botines);
     }
 
@@ -89,5 +103,6 @@ class BotinApiController {
             return $this->view->response('Error al insertar el botin.', 500);
         }
     }
+
     
 }
