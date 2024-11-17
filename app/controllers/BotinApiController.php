@@ -31,14 +31,54 @@ class BotinApiController {
         $size = max(1, $req->query->size);
         //filtrado
         if(isset($req->query->modelo)){
-            $queryFiltro = $queryFiltro . "AND modelo = ? ";
-            array_push($filtros, $req->query->modelo );
+            $json=[
+                "nombre" => ":modelo",
+                "valor" => $req->query->modelo    
+            ];
+            $queryFiltro = $queryFiltro . " AND modelo = :modelo ";
+            array_push($filtros, $json);
         }
         if(isset($req->query->color)){
-            echo($req->query->color);
-            $queryFiltro = $queryFiltro . "AND color = ? ";
-            array_push($filtros, $req->query->color );
+            $json=[
+                "nombre" => ":color",
+                "valor" => $req->query->color    
+            ];
+            $queryFiltro = $queryFiltro . " AND color = :color ";
+            array_push($filtros, $json);
         }
+        if(isset($req->query->talle)){
+            $json=[
+                "nombre" => ":talle",
+                "valor" => $req->query->talle    
+            ];
+            $queryFiltro = $queryFiltro . " AND talle = :talle ";
+            array_push($filtros, $json);
+        }
+        if(isset($req->query->gama)){
+            $json=[
+                "nombre" => ":gama",
+                "valor" => $req->query->gama    
+            ];
+            $queryFiltro = $queryFiltro . " AND gama = :gama ";
+            array_push($filtros, $json);
+        }
+        if(isset($req->query->precio)){
+            $json=[
+                "nombre" => ":precio",
+                "valor" => $req->query->precio    
+            ];
+            $queryFiltro = $queryFiltro . " AND precio = :precio ";
+            array_push($filtros, $json);
+        }
+        if(isset($req->query->id_marca)){
+            $json=[
+                "nombre" => ":id_marca",
+                "valor" => $req->query->id_marca    
+            ];
+            $queryFiltro = $queryFiltro . " AND id_marca = :id_marca ";
+            array_push($filtros, $json);
+        }
+
 
         $offset = ($page - 1) * $size;
 

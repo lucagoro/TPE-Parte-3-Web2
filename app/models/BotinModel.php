@@ -47,10 +47,12 @@ class BotinModel {
             $query->bindValue(':limit', (int) $limit, PDO::PARAM_INT);
             $query->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
         }
-
-      echo($filtros);
         
-        $query->execute($filtros);
+        
+        foreach ($filtros as $filtro) {
+            $query->bindValue($filtro['nombre'], $filtro['valor']);
+        }
+        $query->execute();
         $botines = $query->fetchAll(PDO::FETCH_OBJ);
         return $botines;
     }
