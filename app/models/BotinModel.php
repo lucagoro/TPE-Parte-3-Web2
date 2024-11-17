@@ -48,10 +48,10 @@ class BotinModel {
             $query->bindValue(':offset', (int) $offset, PDO::PARAM_INT);
         }
         
-        
         foreach ($filtros as $filtro) {
             $query->bindValue($filtro['nombre'], $filtro['valor']);
         }
+        
         $query->execute();
         $botines = $query->fetchAll(PDO::FETCH_OBJ);
         return $botines;

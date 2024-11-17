@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2024 a las 23:37:57
+-- Tiempo de generación: 17-11-2024 a las 20:40:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -43,7 +43,26 @@ CREATE TABLE `botines` (
 
 INSERT INTO `botines` (`id_botin`, `modelo`, `color`, `talle`, `gama`, `precio`, `id_marca`) VALUES
 (1, 'tempo', 'negro', 42, 'alta', 120000, 1),
-(2, 'tempo', 'blanco', 44, 'media', 110000, 2);
+(2, 'tempo', 'blanco', 44, 'media', 110000, 2),
+(4, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(5, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(6, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(7, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(8, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(9, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(10, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(11, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(12, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(13, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(14, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(15, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(16, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(17, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(18, 'Tiempo Legend', 'crema', 47, 'media', 160000, 2),
+(19, 'Phantom GT', 'negro', 42, 'alta', 250000, 1),
+(20, 'Tiempo Premier', 'rojo', 44, 'baja', 120000, 20),
+(21, 'Mercurial Vapor', 'azul', 45, 'alta', 350000, 21),
+(22, 'Classic Tiempo', 'blanco', 43, 'media', 180000, 26);
 
 -- --------------------------------------------------------
 
@@ -63,12 +82,11 @@ CREATE TABLE `marcas` (
 --
 
 INSERT INTO `marcas` (`id_marca`, `nombre`, `sede`, `foto`) VALUES
-(1, 'Puma', 'Tandil', NULL),
-(2, 'Nikoo', 'Argentina', ' https://tse3.mm.bing.net/th?id=OIP.ZnOtPr085U5DoYcm35ogrQHaFj&pid=Api&P=0&h=180'),
-(17, 'kike', 'rusia', NULL),
+(1, 'Puma', 'Lama', 'https://tse2.mm.bing.net/th?id=OIP.0z2kSI_ehJizOeLLUL77dQHaEK&pid=Api&P=0&h=180'),
+(2, 'Nike', 'Argentina', 'https://tse3.mm.bing.net/th?id=OIP.ZnOtPr085U5DoYcm35ogrQHaFj&pid=Api&P=0&h=180'),
 (20, 'Reebok', 'Chile', 'https://tse2.mm.bing.net/th?id=OIP.PBH2xzzwlHBfX-t6TpZRZgHaHC&pid=Api&P=0&h=180'),
 (21, 'umbro', 'arg', 'https://tse4.mm.bing.net/th?id=OIP.6F5ct7NgaEBFlIyBLCuBbwHaEz&pid=Api&P=0&h=180'),
-(23, 'Reebok', 'Mexico', 'https://tse2.mm.bing.net/th?id=OIP.DNufu8T6OFbofuln9-EhrAHaGB&pid=Api&P=0&h=180');
+(26, 'Topper', 'Portugal 1038', 'https://up.yimg.com/ib/th?id=OIP.ONFJ7hdree-ChcP5uYxkoQHaFj&pid=Api&rs=1&c=1&qlt=95&w=124&h=93');
 
 -- --------------------------------------------------------
 
@@ -87,7 +105,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `usuario`, `contraseña`) VALUES
-(1, 'webadmin', '$2y$10$Ao7blGL1mWlJuod4aUKEIOeOvYCRI37dhjgC6aR/xNmbB/Tcm/Jv2');
+(1, 'webadmin', '$2a$12$XGQ84TQbuo7Y5UrFLF92SuVohzeZodL1r0MSYc4rB6g7SMZlFKvyC');
 
 --
 -- Índices para tablas volcadas
@@ -120,13 +138,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `botines`
 --
 ALTER TABLE `botines`
-  MODIFY `id_botin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_botin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`

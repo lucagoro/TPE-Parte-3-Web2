@@ -29,6 +29,7 @@ class BotinApiController {
 
         if(isset($req->query->size))
         $size = max(1, $req->query->size);
+
         //filtrado
         if(isset($req->query->modelo)){
             $json=[
@@ -123,16 +124,17 @@ class BotinApiController {
         }
     }
     function add($req, $res){
+
+        if(empty($req->body->modelo) || empty($req->body->color) || empty($req->body->talle) || empty($req->body->gama) || empty($req->body->precio) || empty($req->body->id_marca)){
+            $this->view->response('Faltan completar datos.', 400);
+        }
+
         $modelo = $req->body->modelo;
         $color = $req->body->color;
         $talle = $req->body->talle;
         $gama = $req->body->gama;
         $precio = $req->body->precio;
         $id_marca = $req->body->id_marca;
-
-        if(empty($modelo) || empty($color) || empty($talle) || empty($gama) || empty($precio) || empty($id_marca)){
-            $this->view->response('Faltan completar datos.', 400);
-        }
 
         $botinAdd = $this->model->insert($modelo, $color, $talle, $gama, $precio, $id_marca);
 

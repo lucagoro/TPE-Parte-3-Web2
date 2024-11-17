@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/request.php';
-require_once __DIR__ . '/response.php';
+require_once 'request.php';
+require_once 'response.php';
 
 class Route {
     private $url;
