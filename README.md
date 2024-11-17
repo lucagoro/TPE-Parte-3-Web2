@@ -2,7 +2,7 @@
 
 ## Integrantes
 
-### *Luca Sebastian Gorosito - email: @gmail.com*
+### *Luca Sebastian Gorosito - email: lucagoro04@gmail.com*
 
 ### *>Tomas Cruz - tc22142@gmail.com*
 

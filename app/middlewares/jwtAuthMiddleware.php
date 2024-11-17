@@ -6,7 +6,6 @@
             $auth_header = explode(' ', $auth_header);
             if(count($auth_header) != 2) {
                 return;
-             
             }
             if($auth_header[0] != 'Bearer') {
                 return;

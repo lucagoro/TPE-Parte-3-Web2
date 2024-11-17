@@ -88,6 +88,9 @@ class BotinApiController {
     }
 
     function edit($req, $res) {
+        if(!$res->user) 
+            return $this->view->response("No autorizado.", 401);
+        
         $id = $req->params->id; 
         $botin = $this->model->getBotin($id);
 
@@ -124,6 +127,8 @@ class BotinApiController {
         }
     }
     function add($req, $res){
+        if(!$res->user) 
+            return $this->view->response("No autorizado.", 401);
 
         if(empty($req->body->modelo) || empty($req->body->color) || empty($req->body->talle) || empty($req->body->gama) || empty($req->body->precio) || empty($req->body->id_marca)){
             $this->view->response('Faltan completar datos.', 400);
