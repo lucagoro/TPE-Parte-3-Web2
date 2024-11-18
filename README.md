@@ -4,7 +4,7 @@
 
 ### *Luca Sebastian Gorosito - email: lucagoro04@gmail.com*
 
-### *>Tomas Cruz - tc22142@gmail.com*
+### *Tomas Cruz - tc22142@gmail.com*
 
 ## Tema del trabajo
 
@@ -16,7 +16,7 @@ En esta entrega creamos nuestra API RESTful de Marcas y Botines donde cualquier 
 
 ## EndPoints
 
-Aclaracion : los ejemplos de los endpoints pueden que no sean exactamentes iguales a la base de datos original, ya que al hacer pruebas la base se fue modificando en nuestro ordenador por lo que el consumidor cuando haga las pruebas puede que tengas diferente orden ya que nosotros eliminamos,modifificamos y agregamos botines.
+Aclaracion : los ejemplos de los endpoints pueden que no sean exactamentes iguales a la base de datos original, ya que al hacer pruebas la base se fue modificando en nuestro ordenador por lo que el consumidor cuando haga las pruebas puede que tengas diferente orden ya que nosotros eliminamos,modificamos y agregamos botines.
 
 ### Endpoints de la tabla botines
 
@@ -24,7 +24,7 @@ Aclaracion : los ejemplos de los endpoints pueden que no sean exactamentes igual
 
 -Obtiene un catalogo de botines.
 
--Endpoint: http://localhost/web2/TPE-Parte-3-Web2/api/botines - Aclaracion: el endpoint anterior es en nuestro caso,en el caso del consumidor debera colocar la ubicacion de donde tendra guardado los archivos del trabajo http://localhost/Ubicacion/api/botines.
+-Endpoint: http://localhost/web2/TPE-Parte-3-Web2/api/botines o http://localhost/Web2/tpe-parte3-web2/TPE-Parte-3-Web2/api/botines - Aclaracion: el endpoint anterior es en nuestro caso,en el caso del consumidor debera colocar la ubicacion de donde tendra guardado los archivos del trabajo http://localhost/Ubicacion/api/botines.
 
 -Ejemplo de respuesta del endpoint:
 
@@ -53,26 +53,26 @@ Aclaracion : los ejemplos de los endpoints pueden que no sean exactamentes igual
 ### En este apartado estan los Opcionales del trabajo
 
 -Si el consumidor lo desea puede hacer combinaciones de los opcionales.
-Gorooo!!!!!!
--( 1er Opcional ) : Si el consumidor lo desea puede hacer un SORT con (ID,Nombre,Genero,Editorial,Autor) y ORDER con (ASC,DESC) pasandolos por URL.
-    Aclaracion: por default sort = ID y order ASC. tal cual como se veria en la tabla de la base de datos
 
--Ejemplo del Opcional 1: http://localhost/tudai/parte3/api/libros?sort=Nombre&order=DESC. 
+-( 1er Opcional ) : Si el consumidor lo desea puede PAGINAR.
+-Ejemplo del Opcional 1: http://localhost/Web2/tpe-parte3-web2/TPE-Parte-3-Web2/api/botines?page=1&size=2;
+-Aclaración: los números de page y size pueden variar. Si ingresas un 0 o un número negativo te toma page=1 o size=1 debido a la función max(); 
 
--( 2do Opcional ) : Si el consumidor lo desea puede hacer un LIMIT con un valor entero y PAGE con un valor entero pasandolos por URL.
-    Aclaracion: por default LIMIT = 2 y PAGE = 1.
+-( 2do Opcional ) : Si el consumidor lo desea puede filtrar los botines pasando la columna a filtrar y el valor deseado, las columnas que se pueden filtrar son modelo, color, talle, gama, precio e id_marca.
+-Ejemplo del Opcional 2:
+http://localhost/Web2/tpe-parte3-web2/TPE-Parte-3-Web2/api/botines?color=rojo;
 
--Ejemplo del Opcional 2: http://localhost/tudai/parte3/api/libros?limit=3&page=2. 
-
--( 3er Opcional ) : Si el consumidor lo desea puede filtrar los botines pasando la columna a filtrar y el valor deseado, las columnas que se pueden filtrar son modelo, color, talle, gama, precio e id_marca.
-
+-( 3er Opcional ) : Si el consumidor lo desea puede ordernar por algun campo que el elija de manera ascendente.
 -Ejemplo del Opcional 3:
-http://localhost/tudai/parte3/api/libros?modelo=tempo&talle=42.
+http://localhost/Web2/tpe-parte3-web2/TPE-Parte-3-Web2/api/botines?orderBy=talle;
+    
+-( 4to Opcional ) : El consumidor debe requerir un token para realizar modificacion(POST/PUT).
+-Ejemplo del Opcional 4: http://localhost/Web2/tpe-parte3-web2/TPE-Parte-3-Web2/api/usuarios/token;
 
 
 #### Obtener un botin (GET)
 
--Obtiene un botin a eleccion pasando una id por parametro
+-Obtiene un botin a eleccion pasando una id por parametro.
 
 -Endpoint: http://localhost/web2/TPE-Parte-3-Web2/api/botines/ID - Aclaracion: el endpoint anterior es en nuestro caso,en el caso del consumidor debera colocar la ubicacion de donde tendra guardado los archivos del trabajo http://localhost/Ubicacion/api/botines/ID.
 
@@ -81,6 +81,7 @@ http://localhost/tudai/parte3/api/libros?modelo=tempo&talle=42.
 ```json
 [
     {
+    "id_botin": 1,
     "modelo": "tempo",
     "color": "negro",
     "talle": 42,
@@ -93,11 +94,11 @@ http://localhost/tudai/parte3/api/libros?modelo=tempo&talle=42.
 
 #### Crear un botin (POST)
 
--Crea un libro para insertarlo en la tabla
+-Crea un botin para insertarlo en la tabla.
 
 -Endpoint: http://localhost/web2/TPE-Parte-3-Web2/api/botines - Aclaracion: el endpoint anterior es en nuestro caso,en el caso del consumidor debera colocar la ubicacion de donde tendra guardado los archivos del trabajo http://localhost/Ubicacion/api/botines.
 
--Ejemplo: en el caso de la marca debera colocar una id valida que sea de alguna  ya existente
+-Ejemplo: en el caso de la marca debera colocar una id valida que sea de alguna ya existente
 
 ```json
 [
@@ -111,7 +112,6 @@ http://localhost/tudai/parte3/api/libros?modelo=tempo&talle=42.
     }
 ]
 ```
-
 
 #### Editar un botin (PUT)
 
@@ -133,3 +133,8 @@ http://localhost/tudai/parte3/api/libros?modelo=tempo&talle=42.
     }
 ]
 ```
+
+Aclaración:
+Cada uno de los integrantes utilizamos distintas URLs para trabajar debido a la ubicación del proyecto dentro de los documentos.
+A- http://localhost/Web2/tpe-parte3-web2/TPE-Parte-3-Web2/api/botines;
+B- http://localhost/web2/TPE-Parte-3-Web2/api/botines;
